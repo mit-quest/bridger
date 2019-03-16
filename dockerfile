@@ -22,3 +22,6 @@ RUN export AZ_REPO=$(lsb_release -cs) \
         --recv-keys BC528686B50D79E339D3721CEB3E94ADBE1229CF \
     && apt-get update -y \
     && apt-get install -y azure-cli
+
+# Install IBM Cloud CLI
+RUN curl -sL https://ibm.biz/idt-installer | bash

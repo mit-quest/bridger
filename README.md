@@ -1,1 +1,2 @@
-# bridger\n MIT's Quest for Intelligence build and Release Agent
+# bridger
+MIT's Quest for Intelligence build and Release Agent

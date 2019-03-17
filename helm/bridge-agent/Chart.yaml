@@ -1,0 +1,10 @@
+apiVersion: v1
+decription: A Helm chart to deploy Bridger Build and Release Agents to Kubernetes.
+name: bridge-agent
+version: 0.1.0
+home: "https://github.com/mit-quest/bridger"
+sources:
+- "https://github.com/mit-quest/bridger/tree/master/readme.md"
+maintainers:
+- name: MIT
+  email: the-quest@mit.edu

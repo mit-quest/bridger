@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "bridge-agent.fullname" . }}
+  labels:
+    app: {{ include "bridge-agent.name" . }}
+    helm.sh/chart: {{ include "bridge-agent.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    rollingUpdate:
+      maxSurge: {{ .Values.maxSurge }}
+      maxUnavailable: {{ .Values.maxUnavailable }}
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ include "bridge-agent.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "bridge-agent.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            {{ - toYaml .Values.resources | indent 12 }}
+          volumeMounts:
+            mountPath: /var/run/docker.sock
+            name: docker-volume
+          env:
+          - name: VSTS_ACCOUNT
+            value: {{ required "VSTS Account: .Values.vsts.account required!" .Values.vsts.account }}
+          - name: VSTS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "bridge-agent.fullname" . }}
+                key: accessToken
+          - name: VSTS_POOL
+            value : {{ required "Agent Pool name: .Values.vsts.agentPool required!" .Values.vsts.agentPool }}
+        volumes:
+          - name: docker-volume
+            hostPath:
+              path: /var/run/docker.sock
+        {{- if .Values.image.pullSecrets }}
+        imagePullSecrets:
+          {{- range .Values.image.pullSecrets }}
+          - name: {{ . }}
+          {{- end }}
+        {{- end }}

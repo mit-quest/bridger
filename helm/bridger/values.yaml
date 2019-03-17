@@ -23,10 +23,11 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-#azp:
+#vsts:
 #  account: <azure-devops-account-name>
 #  workdir: <working-directory-path>
-#  azpPool: <azure-pipelines-pool>
+#  agentPool: <azure-pipelines-pool>
 
 #secrets:
-#  azpToken: <azure-pipeline-token>
+#  PAT with Agent Pools (read, manage) permissions
+#  accessToken: <vsts-token>

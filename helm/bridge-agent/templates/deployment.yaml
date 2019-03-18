@@ -43,6 +43,12 @@ spec:
               key: accessToken
         - name: VSTS_POOL
           value : {{ required "Agent Pool name: .Values.vsts.agentPool required!" .Values.vsts.agentPool }}
+        {{- if .Values.gcp }}
+        - name: GCP_SERVICE_ACCOUNT
+          value: {{ required "GCP Service Account: .Values.gcp.account required!" .Values.gcp.account }}
+        - name: GCP_PROJECT
+          value: {{ required "GCP Project: .Values.gcp.project required!" .Values.gcp.project }}
+        {{- end }}
       volumes:
         - name: docker-volume
           hostPath:

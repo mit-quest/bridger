@@ -1,0 +1,11 @@
+apiversion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "bridge-agent.fullname" . }}
+  labels:
+    app: {{ include "bridge-agent.name" . }}
+    helm.sh/chart: {{ include "bridge-agent.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+    workingDirectory: {{ required "Working Directory: .Values.vsts.workdir is required!" .Values.vsts.workdir }}

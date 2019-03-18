@@ -29,13 +29,12 @@ resources: {}
 #  agentPool: <azure-pipelines-pool>
 
 #gcp:
-# Service Account used to Deploy applications to Google Cloud resources.
+# Service Account used to Deploy applications to Google Cloud resources. The Service Account
+# must have the necessary roles granting it the permisions needed to operate on the Google Cloud
+# Resources used to complete a specific build and/or deployment task in GCP.
 #  account: <service-account-name>
 # Google Cloud Project scope of the service account.
 #  project: <project-name>
-# Role granting the needed permisions for the agent to operate on Google Cloud Resources
-# to complete build and deployment tasks integrated with GCP
-#  role: roles/<role-name>
 
 #secrets:
 # PAT with Agent Pools (read, manage) permissions

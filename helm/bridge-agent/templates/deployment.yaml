@@ -34,8 +34,7 @@ spec:
         - name: docker-volume
           mountPath: /var/run/docker.sock
         - name: work-volume
-          configMap:
-            name: workingDirectory
+          mountPath: {{ required "Working Directory: .Values.vsts.workdir is required!" .Values.vsts.workdir }}
         env:
         - name: VSTS_TOKEN
           valueFrom:
@@ -47,14 +46,14 @@ spec:
         - name: VSTS_POOL
           value : {{ required "Agent Pool name: .Values.vsts.agentPool required!" .Values.vsts.agentPool }}
         - name: AGENT_WORKFOLDER
-          configMap:
-            name: workingDirectory
+          value: {{ required "Working Directory: .Values.vsts.workdir is required!" .Values.vsts.workdir }}
       volumes:
         - name: docker-volume
           hostPath:
             path: /var/run/docker.sock
         - name: work-volume
-          emptyDir: {}
+          hostPath:
+            path: /mnt/data
       {{- if .Values.image.pullSecrets }}
       imagePullSecrets:
         {{- range .Values.image.pullSecrets }}

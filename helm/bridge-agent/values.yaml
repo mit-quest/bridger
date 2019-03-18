@@ -28,6 +28,13 @@ resources: {}
 #  workdir: <working-directory-path>
 #  agentPool: <azure-pipelines-pool>
 
+#gcp:
+# Service Account used to Deploy applications to
+#  account: <service-account-name>@appspot.gserviceaccount.com
+# Role granting the needed permisions for the agent to operate on Google Cloud Resources
+# to complete build and deployment tasks integrated with GCP
+#  role: roles/<role-name>
+
 #secrets:
-#  PAT with Agent Pools (read, manage) permissions
+# PAT with Agent Pools (read, manage) permissions
 #  accessToken: <vsts-token>

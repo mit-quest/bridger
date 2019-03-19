@@ -48,6 +48,11 @@ spec:
           value: {{ required "GCP Service Account: .Values.gcp.account required!" .Values.gcp.account }}
         - name: GCP_PROJECT
           value: {{ required "GCP Project: .Values.gcp.project required!" .Values.gcp.project }}
+        - name: GCP_KEYDATA
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "bridge-agent.fullname" . }}
+              key: serviceAccountKey
         {{- end }}
       volumes:
         - name: docker-volume

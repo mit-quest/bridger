@@ -9,6 +9,9 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -cs)" \
     && apt-get update -y \
     && apt-get install google-cloud-sdk -y
 
+# Copy the Google Login helper.
+COPY ./scripts/g.sh /bridge/scripts/g.sh
+
 # Install Azure CLI
 RUN export AZ_REPO=$(lsb_release -cs) \
     && apt-get install -y --no-install-recommends \

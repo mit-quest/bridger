@@ -39,3 +39,7 @@ resources: {}
 #secrets:
 # PAT with Agent Pools (read, manage) permissions
 #  accessToken: <vsts-token>
+# GCP Service Account Key (JSON)
+  serviceAccountKey: |
+    {
+    }

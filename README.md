@@ -32,7 +32,7 @@ Agent Pools within the Project.
    kubectl patch deploy --namespace kube-system tiller-deploy -p \
        '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}
    ```
-   **WARNING**  
+   <span style="color:red">**WARNING**</span>  
    You should be aware that this has an effect on the security of your cluster. You can assign greater
    restrictions on Tiller and do not need to assign the cluster role of `cluster-admin` for Tiller to
    work. See more detailed instructions on configuring authentication
@@ -60,17 +60,15 @@ this generate a PAT in Azure DevOps by following the directions
 [here](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops#create-personal-access-tokens-to-authenticate-access)
 and select the associated permissions.
 
------
-
-NOTE:  
-You may want to select additional permissions for your agents depending on what resources you
-wish to connect to in your CI/CD pipeline. This permissions listed here are the _bare minimum_ required
-for the agents to register with Azure DevOps.
-
-----
-
 After creating the PAT, make sure and store it in a secure location as it will be used later in the
 deployment process.
+
+-----
+**NOTE**  
+You may want to select additional permissions for your agents depending on what resources you
+wish to connect to in your CI/CD pipeline. The permissions listed here are the **_bare minimum_**
+set of permissions required to register the agents with Azure DevOps.
+----
 
 ### Configuring values.yaml
 The provided [values.yaml](./helm/bridge-agent) for Bridger need to be modified in order to complete

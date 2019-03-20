@@ -23,9 +23,10 @@ Agent Pools within the Project.
 ### Creating an Agent Pool in Azure DevOps
 1. From Your Azure DevOps organization page, go to Organization Settings  
 ![Organization Settings](./docs/_static/org_settings.png)
-1. Select Agent Pools
-1. New agent pool...
-1. Provide a name for the new pool in place of `<agent-pool-name>`  
+1. Create a new Agent Pool  
+   1. Select Agent Pools
+   1. New agent pool...
+   1. Provide a name for the new pool in place of `<agent-pool-name>`  
 ![Creating a new Agent Pool in Azure DevOps](./docs/_static/create_agent_pool.png)
 
 ### Registering Agents

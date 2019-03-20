@@ -27,3 +27,10 @@ Agent Pools within the Project.
 1. New agent pool...
 1. Provide a name for the new pool in place of `<agent-pool-name>`  
 ![Creating a new Agent Pool in Azure DevOps](./docs/_static/create_agent_pool.png)
+
+### Registering Agents
+In order for Bridger to register as an agent in the newly created Agent Pool in Azure DevOps, you will
+have to provide the agents with with a minimum of `Agent Pool (Read & manage)` permission levels. To do
+thiso generate a PAT by following the directions
+[here](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops#create-personal-access-tokens-to-authenticate-access)
+and select the correct permissions.

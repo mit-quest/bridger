@@ -40,7 +40,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: {{ include "bridge-agent.fullname" . }}
-              key: accessToken
+              key: "vsts.accessToken"
         - name: VSTS_POOL
           value : {{ required "Agent Pool name: .Values.vsts.agentPool required!" .Values.vsts.agentPool }}
         {{- if .Values.gcp }}
@@ -52,7 +52,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: {{ include "bridge-agent.fullname" . }}
-              key: serviceAccountKey
+              key: "gcp.serviceAccountKey"
         {{- end }}
       volumes:
         - name: docker-volume

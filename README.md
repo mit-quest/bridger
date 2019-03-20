@@ -5,13 +5,15 @@ Pipelines Agent, Bridger integrates natively with Azure and provides the additio
 mechanisms needed to integrate with other public cloud providers.
 
 ## Prerequisites
-Bridger is an application deployed to Kubernetes using Helm. As such, users should have an
-understanding of how Helm packages and installs software on Kubernetes. Users should have access
-to a Kubernetes cluster and have a general understanding of the Kubernetes System.
-Since Bridger integrates directly with Azure Pipelines, users are expected to have a basic
-understanding of Azure Pipelines and Azure DevOps more generally. Specifically, users should have
-worked with Build and Release concepts, including Agent Pools and have the necessary permissions to
-administer Agent Pools in their associated Azure DevOps Subscription.
+Bridger is an application deployed to [Kubernetes](http://kubernetes.io) using [Helm](https://helm.sh).
+As such, users should have an understanding of how Helm packages and installs software on Kubernetes,
+have access to a Kubernetes cluster and have a general understanding of Docker and Kubernetes. Since
+Bridger integrates directly with Azure Pipelines, users are expected to have a basic
+understanding of Azure Pipelines and have an account in Azure DevOps. Specifically, users should understand
+[Build and Release](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/agents)
+concepts, and [Agent Pools](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/pools-queues).
+Users are also required to have permissions to administer Agent Pools in their associated Azure DevOps
+Subscription.
 
 ## Getting Started
 In order to deploy Bridger, a user in Azure DevOps should create a Personal Access Token (PAT)

@@ -45,7 +45,7 @@ Agent Pools within the Project.
 ![Organization Settings](./docs/_static/org_settings.png)
 
 <a href="" id="creating_new_agent_pool"></a>
-1. Create a new Agent Pool  
+2. Create a new Agent Pool  
    1. Select Agent Pools
    1. New agent pool...
    1. Provide a name for the new pool in place of `<agent-pool-name>`

@@ -150,7 +150,7 @@ Google Cloud resources.
         gcpServiceAccountKeyfile: azure-pipelines-agent.json
       ```
 
-5. Make Sure the formatting of the service account key file is properly escaped.  
+5. **Make Sure the formatting of the service account key file is properly escaped!!!**  
    Within the azure-pipelines-agent.json file, modify the `"private_key"` value such that all
    occurrances of `\n` appear as `\\n`:  
    e.g.  

@@ -5,8 +5,9 @@ integrates with other public cloud providers to enable access to their resources
 
 ## Prerequisites
 Bridger is an application deployed to Kubernetes using Helm. As such, users should have an
-understanding of how Helm packages and installs software to Kubernetes and should have gone
-through the setup steps to begin using a Kubernetes. Additionally, Bridger integrates
-directly with Azure Pipelines and users housl have a basic understanding of Azure Pipelines
-Build and Release concepts, Agent Pools and have the necessary permissions to administer
-Agent Pools in their associated Azure DevOps Subscription.
+understanding of how Helm packages and installs software on Kubernetes. Users should have access
+to a Kubernetes cluster and have a general understanding of the Kubernetes System.
+Since Bridger integrates directly with Azure Pipelines, users are expected to have a basic
+understanding of Azure Pipelines and Azure DevOps more generally. Specifically, users should have
+worked with Build and Release concepts, including Agent Pools and have the necessary permissions to
+administer Agent Pools in their associated Azure DevOps Subscription.

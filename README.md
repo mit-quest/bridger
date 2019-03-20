@@ -71,3 +71,19 @@ for the agents to register with Azure DevOps.
 
 After creating the PAT, make sure and store it in a secure location as it will be used later in the
 deployment process.
+
+### Configuring values.yaml
+The provided [values.yaml](./helm/bridge-agent) for Bridger need to be modified in order to complete
+a minimally viable deployment to your Kubernetes cluster. You will need:
+
+1. Your Azure DevOps Organization/Account name.  
+   The name can be found in the URL of your Azure DevOps Organization Page. Use the `<account>` section
+   from one of the following URLs (whichever is present)  
+   `https://<acount>.visualstudio.com`  
+   `https://dev.azure.com/<account>`
+
+2. The Name of the agent pool.  
+   This is the same name you used when [creating the new agent pool](#create_new_agent_pool)
+
+3. A PAT with `Agent Pool (Read & manage)` permissions.  
+   Use the same PAT [generated above](#generating_agent_pat)

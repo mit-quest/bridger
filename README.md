@@ -15,10 +15,29 @@ concepts, and [Agent Pools](https://docs.microsoft.com/en-us/azure/devops/pipeli
 Users are also required to have permissions to administer Agent Pools in their associated Azure DevOps
 Subscription.
 
-## Getting Started
+## Deployment
 In order to deploy Bridger, a user in Azure DevOps should create a Personal Access Token (PAT)
 from within their Azure DevOps account. This user will need to have the permissions to manage
 Agent Pools within the Project.
+
+## Getting Started
+1. If you are not using Helm, [install it](https://github.com/helm/helm#install).
+1. Make sure you have a `kubconfig` that will allow cluster authentication.
+1. Create a Service account for Tiller
+   ```
+   kubectl create serviceaccount --namespace kube-system tiller
+   kubectl create clusterrolebinding tiller-cluster-binding \
+       --clusterrole=cluster-admin \
+       --serviceaccount=kube-system:tiller
+   kubectl patch deploy --namespace kube-system tiller-deploy -p \
+       '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}
+   ```
+   **WARNING**  
+   You should be aware that this has an effect on the security of your cluster. You can assign greater
+   restrictions on Tiller and do not need to assign the cluster role of `cluster-admin` for Tiller to
+   work. See more detailed instructions on configuring authentication
+   [here](https://github.com/helm/helm/blob/master/docs/rbac.md).
+
 
 ### Creating an Agent Pool in Azure DevOps
 1. From Your Azure DevOps organization page, go to Organization Settings  

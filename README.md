@@ -40,12 +40,12 @@ Agent Pools within the Project.
 
 
 ### Creating an Agent Pool in Azure DevOps
-1. From Your Azure DevOps organization page, go to Organization Settings  
+1. **From Your Azure DevOps organization page, go to Organization Settings**  
 
 ![Organization Settings](./docs/_static/org_settings.png)
 
 <a href="" id="creating_new_agent_pool"></a>
-2. Create a new Agent Pool  
+2. **Create a new Agent Pool**  
    1. Select Agent Pools
    1. New agent pool...
    1. Provide a name for the new pool in place of `<agent-pool-name>`
@@ -76,23 +76,23 @@ set of permissions required to register the agents with Azure DevOps.
 The provided [values.yaml](./helm/bridge-agent) for Bridger need to be modified in order to complete
 a minimally viable deployment to your Kubernetes cluster. You will need:
 
-1. Your Azure DevOps Organization/Account name.  
+1. **Your Azure DevOps Organization/Account name.**  
    The name can be found in the URL of your Azure DevOps Organization Page. Use the `<account>` section
    from one of the following URLs (whichever is present)  
    `https://<acount>.visualstudio.com`  
    `https://dev.azure.com/<account>`
 
-2. The Name of the agent pool.  
+2. **The Name of the agent pool.**  
    This is the same name you used when [creating the new agent pool](#create_new_agent_pool)
 
-3. A PAT with `Agent Pool (Read & manage)` permissions.  
+3. **A PAT with `Agent Pool (Read & manage)` permissions.**  
    Use the same PAT [generated above](#generating_agent_pat)
 
 ### Connecting to GCP.
 The Helm chart also provides a set of values you can use to connect your build nd release agents to 
 Google Cloud resources.
 
-1. Create a Service Account For Bridger Agents to Connet to GCP Resources.  
+1. **Create a Service Account For Bridger Agents to Connet to GCP Resources.**  
    e.g.  
    ```
    gcloud iam service-accounts create azure-pipelines-agent \
@@ -103,8 +103,8 @@ Google Cloud resources.
        --format="value(email)")
    ```
 
-2. Add Role Bindings to give the Azure Pipelines agent permissions to manage build or deployment
-   phases on GCP resources.
+2. **Add Role Bindings to give the Azure Pipelines agent permissions to manage build or deployment
+   phases on GCP resources.**
    ```
    gcloud projects add-iam-policy-binding <GCLOUD_PROJECT_NAME> \
        --member serviceAccount:$_SERVICE_ACCOUNT \
@@ -116,7 +116,7 @@ Google Cloud resources.
    Cloud Functions, App Engine and other resources. As a best practive, you should assign the minimal
    number of roles needed for Bridger to access just the resources it needs to manage within GCP.
 
-3. Generate a service account key.
+3. **Generate a service account key.**
    1. Run the gcloud command to gnerate a JSON file containing the key.
       ```
       gcloud iam service-accounts keys create azure-pipelines-agent.json \
@@ -132,7 +132,7 @@ Google Cloud resources.
       ```
       Otherwise, just move the generated JSON file to the path outlined above.
 
-4. Modify values.yaml to connect to GCP
+4. **Modify values.yaml to connect to GCP**
    1. add the service account name
       ```
       gcp:

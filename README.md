@@ -87,3 +87,75 @@ a minimally viable deployment to your Kubernetes cluster. You will need:
 
 3. A PAT with `Agent Pool (Read & manage)` permissions.  
    Use the same PAT [generated above](#generating_agent_pat)
+
+### Connecting to GCP.
+The Helm chart also provides a set of values you can use to connect your build nd release agents to 
+Google Cloud resources.
+
+1. Create a Service Account For Bridger Agents to Connet to GCP Resources.  
+   e.g.  
+   ```
+   gcloud iam service-accounts create azure-pipelines-agent \
+       --display-name "Azure Pipelines Bridger Agent"
+
+   _SERVICE_ACCOUNT=$(gcloud iam service-accounts list \
+       --filter="displayName:Azure Pipelines Bridger Agent" \
+       --format="value(email)")
+   ```
+
+2. Add Role Bindings to give the Azure Pipelines agent permissions to manage build or deployment
+   phases on GCP resources.
+   ```
+   gcloud projects add-iam-policy-binding <GCLOUD_PROJECT_NAME> \
+       --member serviceAccount:$_SERVICE_ACCOUNT \
+       --roles <roles>
+   ```
+   **NOTE**  
+   The roles chosen depend on the amount of resources Bridger Agents should have access to within GCP.
+   This may include the need to create and manage other projects, manage deployments to Compute Engine,
+   Cloud Functions, App Engine and other resources. As a best practive, you should assign the minimal
+   number of roles needed for Bridger to access just the resources it needs to manage within GCP.
+
+3. Generate a service account key.
+   1. Run the gcloud command to gnerate a JSON file containing the key.
+      ```
+      gcloud iam service-accounts keys create azure-pipelines-agent.json \
+          --iam-account $_SERVICE_ACCOUNT
+      ```
+   2. Save the file in bridger's helm chart directory root:  
+      If the service account key was screated using cloudshell, you may be able to retrieve it
+      using the following command.
+      ```
+      gcloud alpha cloud-shell scp \
+          cloudshell:~/aure-pipelines-agent.json \
+          localhost:<path-to-repo>/bridger/helm/bridge-agent/azure-pipelines-agent.json
+      ```
+      Otherwise, just move the generated JSON file to the path outlined above.
+
+4. Modify values.yaml to connect to GCP
+   1. add the service account name
+      ```
+      gcp:
+        account: azure-pipelines-agent
+        ...
+      ```
+   2. add the project name
+      ```
+        project: <GCLOUD_PROJECT_NAME>
+      ```
+   3. add the filename of the service account key
+      ```
+      secrets:
+        ...
+        gcpServiceAccountKeyfile: azure-pipelines-agent.json
+      ```
+
+5. Make Sure the formatting of the service account key file is properly escaped.  
+   Within the azure-pipelines-agent.json file, modify the `"private_key"` value such that all
+   occurrances of `\n` appear as `\\n`:  
+   e.g.  
+   ```
+   ...
+   \\nNpvYkUplAgMBAAECggEAKfuRvct4fR6iuyBLrd8Sr+B3nujIMyLcaOXP5bl/kVf3\\nJq+L5muWY/lntS9p
+   ...
+   ```

@@ -8,7 +8,7 @@ maxUnavailable: 0
 
 image:
   repository: mitquest/bridge-agent
-  tag: release
+  tag: f91938e
   pullPolicy: IfNotPresent
 
 resources: {}

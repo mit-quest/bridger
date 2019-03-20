@@ -20,9 +20,6 @@ gcloud config set account ${GCP_SERVICE_ACCOUNT}
 __qi_jsonkey=__qi_azp_key_file.json
 
 # Print the key data to json file
-while IFS= read -r line; do
-    read trimmed < <(echo "$line")
-    echo "$trimmed" >> $__qi_jsonkey
-done < <(echo -e "${GCP_KEYDATA}")
+echo -e "${GCP_KEYDATA}" > $__qi_jsonkey
 
 gcloud auth activate-service-account --key-file $__qi_jsonkey

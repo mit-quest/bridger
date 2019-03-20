@@ -8,7 +8,7 @@ maxUnavailable: 0
 
 image:
   repository: mitquest/bridge-agent
-  tag: release
+  tag: f91938e
   pullPolicy: IfNotPresent
 
 resources: {}
@@ -28,6 +28,16 @@ resources: {}
 #  workdir: <working-directory-path>
 #  agentPool: <azure-pipelines-pool>
 
+#gcp:
+# Service Account used to Deploy applications to Google Cloud resources. The Service Account
+# must have the necessary roles granting it the permisions needed to operate on the Google Cloud
+# Resources used to complete a specific build and/or deployment task in GCP.
+#  account: <service-account-name>
+# Google Cloud Project scope of the service account.
+#  project: <project-name>
+
 #secrets:
-#  PAT with Agent Pools (read, manage) permissions
+# PAT with Agent Pools (read, manage) permissions
 #  accessToken: <vsts-token>
+# GCP Service Account Key Filename (JSON)
+#  gcpServiceAccountKeyfile: <service-account-key-file>

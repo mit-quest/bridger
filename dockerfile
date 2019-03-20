@@ -25,3 +25,6 @@ RUN export AZ_REPO=$(lsb_release -cs) \
 
 # Install IBM Cloud CLI
 RUN curl -sL https://ibm.biz/idt-installer | bash
+
+# Copy the Google Login helper.
+COPY ./scripts/g.sh /bridge/scripts/g.sh

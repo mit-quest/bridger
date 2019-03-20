@@ -64,10 +64,12 @@ After creating the PAT, make sure and store it in a secure location as it will b
 deployment process.
 
 -----
+
 **NOTE**  
 You may want to select additional permissions for your agents depending on what resources you
 wish to connect to in your CI/CD pipeline. The permissions listed here are the **_bare minimum_**
 set of permissions required to register the agents with Azure DevOps.
+
 ----
 
 ### Configuring values.yaml

@@ -11,16 +11,33 @@ pool:
 
 variables:
   imageName: 'bridge-agent:$(build.buildId)'
+  dockerHubRegistry: mitquest
 
 steps:
-- script: docker build -f dockerfile -t $(imageName) .
-  displayName: 'docker build'
-- script: docker tag $(imageName) mitquest/$(imageName)
-  displayName: 'tag image'
-- task: Docker@0
-  displayName: 'publish bridger-agent container'
+- task: Docker@1
+  displayName: 'Login'
   inputs:
+    command: login
     containerregistrytype: 'Container Registry'
-    dockerRegistryConnection: 'mit-quest'
-    action: 'Push an image'
-    imageName: '$(imageName):$(Build.BuildNumber)'
+    dockerRegistryEndpoint: mit-quest
+- task: Docker@1
+  displayName: 'Build'
+  inputs:
+    command: Build an image
+    containerregistrytype: 'Container Registry'
+    dockerFile: dockerfile
+    imageName: $(imageName)
+- task: Docker@1
+  displayName: 'tag'
+  inputs:
+    command: Tag image
+    containerregistrytype: Container Registry
+    imageName: $(imageName)
+    arguments: $(dockerHubRegistry)/$(imageName)
+- task: Docker@1
+  displayName: push
+  inputs:
+    command: Push an image
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: mit-quest
+    imageName: $(dockerHubRegistry)/$(imageName)

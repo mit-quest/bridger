@@ -11,7 +11,8 @@ pool:
 
 variables:
   imageName: 'bridge-agent:$(build.buildId)'
-  dockerHubRegistry: mitquest.docker
+  dockerHubRegistry: mitquest
+  serviceConnectionEndpoint: mitquest.docker
 
 steps:
 - task: Docker@1
@@ -19,7 +20,7 @@ steps:
   inputs:
     command: login
     containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: mit-quest
+    dockerRegistryEndpoint: $(serviceConnectionEndpoint)
 - task: Docker@1
   displayName: 'Build'
   inputs:
@@ -39,5 +40,5 @@ steps:
   inputs:
     command: Push an image
     containerregistrytype: Container Registry
-    dockerRegistryEndpoint: mit-quest
+    dockerRegistryEndpoint: $(serviceConnectionEndpoint)
     imageName: $(dockerHubRegistry)/$(imageName)

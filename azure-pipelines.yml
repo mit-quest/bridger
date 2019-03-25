@@ -11,7 +11,7 @@ pool:
 
 variables:
   imageName: 'bridge-agent:$(build.buildId)'
-  dockerHubRegistry: mitquest
+  dockerHubRegistry: mitquest.docker
 
 steps:
 - task: Docker@1

@@ -17,3 +17,10 @@ steps:
   displayName: 'docker build'
 - script: docker tag $(imageName) mitquest/$(imageName)
   displayName: 'tag image'
+- task: Docker@0
+  displayName: 'publish bridger-agent container'
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: 'mit-quest'
+    action: 'Push an image'
+    imageName: '$(imageName):$(Build.BuildNumber)'

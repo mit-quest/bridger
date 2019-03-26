@@ -1,8 +1,13 @@
 # bridger
+
 Bridger is an agent designed to be run in Azure Pipelines Build and Release workflows enabling
 the development of _Cross Cloud_ CI/CD pipelines. Built on top of Microsoft's provided Azure
 Pipelines Agent, Bridger integrates natively with Azure and provides the additional authentication
 mechanisms needed to integrate with other public cloud providers.
+
+## Project Status
+
+![Azure Pipelines Build Status](https://dev.azure.com/MITQuest/Bridger/_apis/build/status/mit-quest.bridger?branchname=master)
 
 ## Prerequisites
 Bridger is an application deployed to [Kubernetes](http://kubernetes.io) using [Helm](https://helm.sh).
